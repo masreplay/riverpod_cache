@@ -29,6 +29,7 @@ extension FutureProviderOfflinePersistence on Ref {
   }
 
   /// Emit the cache first then the [future] and if error occurred emit the cache
+  /// * ensure the type [T] have a proper `==` operator for better performance
   ///
   /// [T] is the type that will be emitted
   /// [Encodable] is the type that can be converted to and from json, and must be encodable by [jsonEncode]
