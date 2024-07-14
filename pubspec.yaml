@@ -1,8 +1,8 @@
 name: riverpod_cache
 description: "Add offline persistence support for Riverpod"
-version: 0.0.1
-homepage: https://github.com/masreplay/riverpod_hook_cache
-issue_tracker: https://github.com/masreplay/riverpod_hook_cache/issues
+version: 0.0.2
+homepage: https://github.com/masreplay/riverpod_cache
+issue_tracker: https://github.com/masreplay/riverpod_cache/issues
 documentation: https://riverpod.dev/getting-started
 funding: [https://github.com/sponsors/masreplay]
 topics: [riverpod, cache, offline, persistence, shared_preferences]

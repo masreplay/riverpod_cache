@@ -20,7 +20,7 @@ In order to use this package, you need to add `riverpod_cache` as a dependency i
 
 ```yaml
 dependencies:
-  riverpod_cache: ^0.0.1
+  riverpod_cache: ^0.0.2
 ```
 
 Then, run `flutter pub get` to fetch the package.
@@ -28,6 +28,13 @@ Then, run `flutter pub get` to fetch the package.
 ## Usage
 
 ```dart
+import 'package:riverpod_cache/riverpod_cache.dart';
+
+@riverpod
+SharedPreferences sharedPreferences(SharedPreferencesRef ref) {
+  throw UnimplementedError();
+}
+
 @riverpod
 Stream<TodoResponse> todo(TodoRef ref) {
   return ref.cacheFirstOfflinePersistence(
@@ -45,6 +52,19 @@ Stream<TodoResponse> todo(TodoRef ref) {
     sharedPreferences: ref.read(sharedPreferencesProvider),
     fromJson: TodoResponse.fromJson,
     toJson: (object) => object.toJson(),
+  );
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final sharedPreferences = await SharedPreferences.getInstance();
+  runApp(
+    ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      ],
+      child: const MainApp(),
+    ),
   );
 }
 ```
