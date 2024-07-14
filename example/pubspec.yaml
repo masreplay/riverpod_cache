@@ -7,10 +7,17 @@ environment:
   sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
+  dio: ^5.5.0+1
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.5.1
   riverpod_annotation: ^2.3.5
+
+  # TODO(you): replace with version from pubspec
+  # riverpod_cache: 
+  riverpod_cache: 
+    path: ../
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
