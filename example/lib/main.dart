@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:example/todo_response.dart';
 import 'package:flutter/material.dart';
@@ -15,21 +17,23 @@ SharedPreferences sharedPreferences(SharedPreferencesRef ref) {
 
 @riverpod
 Stream<TodoResponse> todo(TodoRef ref) {
-  return ref.streamOfflinePersistence(
+  return ref.cacheFirstOfflinePersistence(
     key: 'todo',
     future: () async {
       final response = await Dio().get(
         'https://jsonplaceholder.typicode.com/todos/1',
       );
+
       return TodoResponse.fromJson(response.data);
     },
     sharedPreferences: ref.read(sharedPreferencesProvider),
     fromJson: TodoResponse.fromJson,
-    toJson: (value) => value.toJson(),
+    toJson: (object) => object.toJson(),
   );
 }
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final sharedPreferences = await SharedPreferences.getInstance();
   runApp(
     ProviderScope(
@@ -64,8 +68,10 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
       body: state.when(
         data: (data) {
-          return const Center(
-            child: Text('Hello World!'),
+          return Center(
+            child: Text(
+              const JsonEncoder.withIndent('  ').convert(data.toJson()),
+            ),
           );
         },
         error: (error, StackTrace stackTrace) {

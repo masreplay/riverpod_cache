@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 extension FutureProviderOfflinePersistence on Ref {
   /// Return the [future] first if error occurs, it will return the cached value
-  Future<T> futureOfflinePersistence<T>({
+  Future<T> futureFirstOfflinePersistence<T>({
     required String key,
     required Future<T> Function() future,
     required SharedPreferences sharedPreferences,
@@ -26,8 +26,8 @@ extension FutureProviderOfflinePersistence on Ref {
     }
   }
 
-  /// Emit the cache first then the [future] and if error occurred return the cached value
-  Stream<T> streamOfflinePersistence<T>({
+  /// Emit the cache first then the [future] and if error occurred emit the cache
+  Stream<T> cacheFirstOfflinePersistence<T>({
     required String key,
     required Future<T> Function() future,
     required SharedPreferences sharedPreferences,
