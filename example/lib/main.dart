@@ -16,8 +16,8 @@ SharedPreferences sharedPreferences(SharedPreferencesRef ref) {
 }
 
 @riverpod
-Stream<TodoResponse> todo(TodoRef ref) {
-  return ref.cacheFirstOfflinePersistence(
+Future<TodoResponse> todo(TodoRef ref) {
+  return ref.futureFirstOfflinePersistence(
     key: 'todo',
     future: () async {
       await Future.delayed(const Duration(seconds: 2));

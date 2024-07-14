@@ -22,11 +22,11 @@ final sharedPreferencesProvider =
 );
 
 typedef SharedPreferencesRef = AutoDisposeProviderRef<SharedPreferences>;
-String _$todoHash() => r'd2e760285170df5f50350b911b33409b2bb5e4e4';
+String _$todoHash() => r'008e4c0f7033a7daa48dde4b7ca74d143bca550a';
 
 /// See also [todo].
 @ProviderFor(todo)
-final todoProvider = AutoDisposeStreamProvider<TodoResponse>.internal(
+final todoProvider = AutoDisposeFutureProvider<TodoResponse>.internal(
   todo,
   name: r'todoProvider',
   debugGetCreateSourceHash:
@@ -35,6 +35,6 @@ final todoProvider = AutoDisposeStreamProvider<TodoResponse>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef TodoRef = AutoDisposeStreamProviderRef<TodoResponse>;
+typedef TodoRef = AutoDisposeFutureProviderRef<TodoResponse>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

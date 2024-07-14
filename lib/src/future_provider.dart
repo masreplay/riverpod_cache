@@ -5,12 +5,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 extension FutureProviderOfflinePersistence on Ref {
   /// Return the [future] first if error occurs, it will return the cached value
-  Future<T> futureFirstOfflinePersistence<T>({
+  ///
+  /// [T] is the type that will be emitted
+  /// [Encodable] is the type that can be converted to and from json, and must be encodable by [jsonEncode]
+  Future<T> futureFirstOfflinePersistence<T, Encodable>({
     required String key,
     required Future<T> Function() future,
     required SharedPreferences sharedPreferences,
-    required T Function(Map<String, dynamic> map) fromJson,
-    required Map<String, dynamic> Function(T object) toJson,
+    required T Function(Encodable map) fromJson,
+    required Encodable Function(T object) toJson,
   }) async {
     try {
       final value = await future();
@@ -18,39 +21,47 @@ extension FutureProviderOfflinePersistence on Ref {
 
       return value;
     } catch (e) {
-      final String? raw = sharedPreferences.getString(key);
+      final raw = sharedPreferences.getString(key);
       if (raw == null) rethrow;
 
-      final Map<String, dynamic> cached = jsonDecode(raw);
-      return fromJson(cached);
+      return fromJson(jsonDecode(raw));
     }
   }
 
   /// Emit the cache first then the [future] and if error occurred emit the cache
-  Stream<T> cacheFirstOfflinePersistence<T>({
+  ///
+  /// [T] is the type that will be emitted
+  /// [Encodable] is the type that can be converted to and from json, and must be encodable by [jsonEncode]
+  Stream<T> cacheFirstOfflinePersistence<T, Encodable>({
     required String key,
     required Future<T> Function() future,
     required SharedPreferences sharedPreferences,
-    required T Function(Map<String, dynamic> map) fromJson,
-    required Map<String, dynamic> Function(T object) toJson,
+    required T Function(Encodable map) fromJson,
+    required Encodable Function(T object) toJson,
   }) async* {
+    T? getCachedResult() {
+      final raw = sharedPreferences.getString(key);
+      if (raw == null) return null;
+      return fromJson(jsonDecode(raw));
+    }
+
     try {
-      final String? raw = sharedPreferences.getString(key);
-      if (raw != null) {
-        final Map<String, dynamic> cached = jsonDecode(raw);
-        yield fromJson(cached);
-      }
+      final cachedResult = getCachedResult();
+      if (cachedResult != null) yield cachedResult;
 
-      final value = await future();
-      await sharedPreferences.setString(key, jsonEncode(toJson(value)));
+      final result = await future();
 
-      yield value;
+      if (cachedResult == result) return;
+
+      await sharedPreferences.setString(key, jsonEncode(toJson(result)));
+      yield result;
     } catch (e) {
-      final String? raw = sharedPreferences.getString(key);
-      if (raw == null) rethrow;
-
-      final Map<String, dynamic> cached = jsonDecode(raw);
-      yield fromJson(cached);
+      final cachedResult = getCachedResult();
+      if (cachedResult != null) {
+        yield cachedResult;
+      } else {
+        rethrow;
+      }
     }
   }
 }
