@@ -10,6 +10,7 @@ Fix Riverpod issue of cache and offline persistence  https://github.com/rroussel
 
 ## Features
 - [x] Cache `FutureProvider` 
+- [x] Cache `StreamProvider` 
 - [x] Cache `StateNotifierProvider`
 - [x] Cache `StateProvider`
 - [x] And more...
