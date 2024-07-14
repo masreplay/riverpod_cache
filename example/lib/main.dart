@@ -27,7 +27,6 @@ Future<TodoResponse> todo(TodoRef ref) {
 
       final result = TodoResponse.fromJson(response.data);
 
-      print('Success');
       return result;
     },
     sharedPreferences: ref.read(sharedPreferencesProvider),
