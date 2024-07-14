@@ -5,7 +5,7 @@ homepage: https://github.com/masreplay/riverpod_cache
 issue_tracker: https://github.com/masreplay/riverpod_cache/issues
 documentation: https://riverpod.dev/getting-started
 funding: [https://github.com/sponsors/masreplay]
-topics: [riverpod, cache, offline, persistence, shared_preferences]
+topics: [riverpod, cache, offline, persistence, shared-preferences]
 
 environment:
   sdk: ">=3.4.0 <4.0.0"
