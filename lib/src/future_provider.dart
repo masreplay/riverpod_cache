@@ -37,7 +37,7 @@ extension FutureProviderOfflinePersistence on Ref {
     required String key,
     required Future<T> Function() future,
     required SharedPreferences sharedPreferences,
-    required T Function(Encodable json) fromJson,
+    required T Function(Encodable map) fromJson,
     required Encodable Function(T object) toJson,
   }) async* {
     T? getCachedResult() {
