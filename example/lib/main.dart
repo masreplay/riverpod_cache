@@ -20,11 +20,15 @@ Stream<TodoResponse> todo(TodoRef ref) {
   return ref.cacheFirstOfflinePersistence(
     key: 'todo',
     future: () async {
+      await Future.delayed(const Duration(seconds: 2));
       final response = await Dio().get(
         'https://jsonplaceholder.typicode.com/todos/1',
       );
 
-      return TodoResponse.fromJson(response.data);
+      final result = TodoResponse.fromJson(response.data);
+
+      print('Success');
+      return result;
     },
     sharedPreferences: ref.read(sharedPreferencesProvider),
     fromJson: TodoResponse.fromJson,
@@ -63,14 +67,24 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(todoProvider);
+    final provider = todoProvider;
+    final state = ref.watch(provider);
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Riverpod Cache Example'),
+      ),
       body: state.when(
         data: (data) {
-          return Center(
-            child: Text(
-              const JsonEncoder.withIndent('  ').convert(data.toJson()),
+          return RefreshIndicator(
+            onRefresh: () => ref.refresh(provider.future),
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Center(
+                child: Text(
+                  const JsonEncoder.withIndent('  ').convert(data.toJson()),
+                ),
+              ),
             ),
           );
         },
