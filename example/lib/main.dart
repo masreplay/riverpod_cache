@@ -40,7 +40,7 @@ Future<void> main() async {
       overrides: [
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
       ],
-      child: MainApp(),
+      child: const MainApp(),
     ),
   );
 }
