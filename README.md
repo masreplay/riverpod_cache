@@ -28,6 +28,25 @@ Then, run `flutter pub get` to fetch the package.
 ## Usage
 
 ```dart
+@riverpod
+Stream<TodoResponse> todo(TodoRef ref) {
+  return ref.cacheFirstOfflinePersistence(
+    key: 'todo',
+    future: () async {
+      await Future.delayed(const Duration(seconds: 2));
+      final response = await Dio().get(
+        'https://jsonplaceholder.typicode.com/todos/1',
+      );
+
+      final result = TodoResponse.fromJson(response.data);
+
+      return result;
+    },
+    sharedPreferences: ref.read(sharedPreferencesProvider),
+    fromJson: TodoResponse.fromJson,
+    toJson: (object) => object.toJson(),
+  );
+}
 ```
 ## Documentation
 
