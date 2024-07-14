@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:riverpod/riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-extension SharedPreferencesCache on Ref {
+extension FutureProviderOfflinePersistence on Ref {
   //
-  Future<T> offlinePersistence<T>({
+  Future<T> futureOfflinePersistence<T>({
     required String key,
     required Future<T> Function() future,
     required SharedPreferences sharedPreferences,

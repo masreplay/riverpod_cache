@@ -4,7 +4,7 @@ import "package:flutter/foundation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
-mixin PersistenceNotifierMixin<State> on AutoDisposeNotifier<State> {
+mixin NotifierOfflinePersistenceMixin<State> on AutoDisposeNotifier<State> {
   @protected
   SharedPreferences get sharedPreferences;
 

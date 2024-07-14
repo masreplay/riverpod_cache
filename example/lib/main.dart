@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-part 'main.g.dart';
-
-@riverpod
- (Ref ref) {
-  return ;
-}
-
 void main() {
   runApp(const MainApp());
 }

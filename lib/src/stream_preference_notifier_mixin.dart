@@ -4,7 +4,8 @@ import "package:flutter/foundation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
-mixin StreamPreferenceNotifierMixin<State> on AutoDisposeStreamNotifier<State> {
+mixin StreamNotifierOfflinePersistenceMixin<State>
+    on AutoDisposeStreamNotifier<State> {
   @protected
   SharedPreferences get sharedPreferences;
 

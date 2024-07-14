@@ -1,7 +1,5 @@
 library riverpod_cache;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/future_provider.dart';
+export 'src/preference_notifier_mixin.dart';
+export 'src/stream_preference_notifier_mixin.dart';
