@@ -1,0 +1,26 @@
+name: riverpod_cache
+description: "Add offline persistence support for Riverpod"
+version: 0.0.1
+homepage: https://github.com/masreplay/riverpod_hook_mutation
+issue_tracker: https://github.com/masreplay/riverpod_hook_mutation/issues
+documentation: https://riverpod.dev/getting-started
+funding: [https://github.com/sponsors/masreplay]
+topics: [riverpod, mutation, flutter, hook, use]
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  shared_preferences: ^2.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
