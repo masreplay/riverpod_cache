@@ -9,3 +9,7 @@
 * Cache `StateNotifierProvider`
 * Cache `StateProvider`
 * Add documentation
+
+## 0.0.3
+
+* Add Support for build and buildless notifiers

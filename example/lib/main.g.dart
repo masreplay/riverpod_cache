@@ -22,7 +22,7 @@ final sharedPreferencesProvider =
 );
 
 typedef SharedPreferencesRef = AutoDisposeProviderRef<SharedPreferences>;
-String _$todoHash() => r'008e4c0f7033a7daa48dde4b7ca74d143bca550a';
+String _$todoHash() => r'd2043c155aba538eda21e481142a923bbacac91a';
 
 /// See also [todo].
 @ProviderFor(todo)
