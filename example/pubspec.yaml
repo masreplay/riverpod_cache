@@ -30,3 +30,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+scripts:
+  g: flutter pub run build_runner build --delete-conflicting-outputs
