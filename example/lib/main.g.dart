@@ -22,19 +22,52 @@ final sharedPreferencesProvider =
 );
 
 typedef SharedPreferencesRef = AutoDisposeProviderRef<SharedPreferences>;
-String _$todoHash() => r'7a2050b0dc7e7ecc4d180dd40db749b9719d798c';
+String _$cacheFirstTodoHash() => r'6bb9101aa924df56e3d10516b3bc79a65c00c019';
 
-/// See also [todo].
-@ProviderFor(todo)
-final todoProvider = AutoDisposeStreamProvider<TodoResponse>.internal(
-  todo,
-  name: r'todoProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$todoHash,
+/// See also [cacheFirstTodo].
+@ProviderFor(cacheFirstTodo)
+final cacheFirstTodoProvider = AutoDisposeStreamProvider<TodoResponse>.internal(
+  cacheFirstTodo,
+  name: r'cacheFirstTodoProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$cacheFirstTodoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef TodoRef = AutoDisposeStreamProviderRef<TodoResponse>;
+typedef CacheFirstTodoRef = AutoDisposeStreamProviderRef<TodoResponse>;
+String _$futureFirstTodoHash() => r'e9bd637ea2a86a9e8e221e6d815a5f0792c1f15c';
+
+/// See also [futureFirstTodo].
+@ProviderFor(futureFirstTodo)
+final futureFirstTodoProvider =
+    AutoDisposeFutureProvider<TodoResponse>.internal(
+  futureFirstTodo,
+  name: r'futureFirstTodoProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$futureFirstTodoHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FutureFirstTodoRef = AutoDisposeFutureProviderRef<TodoResponse>;
+String _$cacheOrFutureTodoHash() => r'bfc4e614c5f57bf8b6f61838d0deadbd4956d39f';
+
+/// See also [cacheOrFutureTodo].
+@ProviderFor(cacheOrFutureTodo)
+final cacheOrFutureTodoProvider =
+    AutoDisposeFutureProvider<TodoResponse>.internal(
+  cacheOrFutureTodo,
+  name: r'cacheOrFutureTodoProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$cacheOrFutureTodoHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CacheOrFutureTodoRef = AutoDisposeFutureProviderRef<TodoResponse>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

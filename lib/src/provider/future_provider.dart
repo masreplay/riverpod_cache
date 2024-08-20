@@ -27,4 +27,29 @@ extension FutureProviderOfflinePersistence<State> on FutureProviderRef<State> {
       return fromJson(jsonDecode(raw));
     }
   }
+
+  /// Return the cached value first if error occurs, it will return the [future]
+  /// * ensure the type [T] have a proper `==` operator for better performance
+  Future<T> cacheOrFutureIfNotPersistence<T, Encodable>({
+    required String key,
+    required Future<T> Function() future,
+    required SharedPreferences sharedPreferences,
+    required T Function(Encodable json) fromJson,
+    required Encodable Function(T object) toJson,
+  }) async {
+    try {
+      final raw = sharedPreferences.getString(key);
+
+      if (raw != null) {
+        return fromJson(jsonDecode(raw));
+      }
+
+      final value = await future();
+      await sharedPreferences.setString(key, jsonEncode(toJson(value)));
+
+      return value;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
