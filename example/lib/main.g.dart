@@ -22,7 +22,7 @@ final sharedPreferencesProvider =
 );
 
 typedef SharedPreferencesRef = AutoDisposeProviderRef<SharedPreferences>;
-String _$cacheFirstTodoHash() => r'6bb9101aa924df56e3d10516b3bc79a65c00c019';
+String _$cacheFirstTodoHash() => r'3c1e3ab283871a1785877cec4e3118cf84222143';
 
 /// See also [cacheFirstTodo].
 @ProviderFor(cacheFirstTodo)
@@ -53,7 +53,7 @@ final futureFirstTodoProvider =
 );
 
 typedef FutureFirstTodoRef = AutoDisposeFutureProviderRef<TodoResponse>;
-String _$cacheOrFutureTodoHash() => r'bfc4e614c5f57bf8b6f61838d0deadbd4956d39f';
+String _$cacheOrFutureTodoHash() => r'a305d1a5aa09dbd8b44b610d109b9ff057871820';
 
 /// See also [cacheOrFutureTodo].
 @ProviderFor(cacheOrFutureTodo)
