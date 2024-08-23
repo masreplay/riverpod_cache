@@ -15,6 +15,8 @@
 * Add Support for build and buildless notifiers
 
 
-## 0.0.5
-
+## 0.0.4
 * Make `Ref` work with its own `ProviderContainer` for `Future` and `Stream` providers
+
+## 0.0.5
+* add new cache strategy
